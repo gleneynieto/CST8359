@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroToWebApps.Static", "IntroToWebApps\IntroToWebApps.Static.csproj", "{1E39C7E6-91D8-4418-B90E-E5960D483B19}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroToWebApps.WebForms", "IntroToWebApps.WebForms\IntroToWebApps.WebForms.csproj", "{41A8145F-74DD-49A7-BC54-90366855D5FE}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IntroToWebApps.Core", "IntroToWebApps.Core\IntroToWebApps.Core.xproj", "{0FE444ED-C772-4F85-8A55-137500990C3F}"
 EndProject
 Global
@@ -15,14 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1E39C7E6-91D8-4418-B90E-E5960D483B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E39C7E6-91D8-4418-B90E-E5960D483B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E39C7E6-91D8-4418-B90E-E5960D483B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E39C7E6-91D8-4418-B90E-E5960D483B19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41A8145F-74DD-49A7-BC54-90366855D5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41A8145F-74DD-49A7-BC54-90366855D5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41A8145F-74DD-49A7-BC54-90366855D5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41A8145F-74DD-49A7-BC54-90366855D5FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FE444ED-C772-4F85-8A55-137500990C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FE444ED-C772-4F85-8A55-137500990C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE444ED-C772-4F85-8A55-137500990C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU

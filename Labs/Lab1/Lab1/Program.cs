@@ -92,7 +92,7 @@ namespace Lab1
         //1 - Import Words From File
         static List<string> ImportWords(List<string> words)
         {
-            int count = 0;
+            int count = words.Count();
 
             Console.WriteLine("Reading Words");
 
@@ -136,10 +136,9 @@ namespace Lab1
                             swap = true;
                         }
                     }
-                } while (swap);
-
-                watch.Stop();
+                } while (swap);             
             }
+            watch.Stop();
             Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds + "ms");          
 
             return words.ToArray();
@@ -151,10 +150,9 @@ namespace Lab1
             var watch = System.Diagnostics.Stopwatch.StartNew();
             if (words.Count != 0)
             {
-                words = words.OrderByDescending(x => x).ToList<string>();
-
-                watch.Stop();
+                words = words.OrderByDescending(x => x).ToList<string>();              
             }
+            watch.Stop();
             Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds + "ms");          
 
             return words.ToArray();
