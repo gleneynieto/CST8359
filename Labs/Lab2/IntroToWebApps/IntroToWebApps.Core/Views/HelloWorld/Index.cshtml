@@ -52,43 +52,63 @@
 <h3>
     Q: Compare ASP.NET WebForms to ASP.NET MVC.<br />
 </h3>
-<h4>
-    ASP.NET WebForms
-</h4>
 <p>
-
-</p>
-<h4>
-    ASP.NET MVC
-</h4>
-<p>
-
+    WebForms' technology is stateful. A record of the users' interaction with the web application is stored in memory or in a database so the user can keep their session alive.<br />
+    MVC is designed to be stateless, where each interaction with the web application is its own unique interaction.<br />
+    MVC also allows you to develop something small, allows you to infinitely deploy apps to people around the world.<br />
+    MVC's biggest strength is in test-driven programming, which means each function can be tested inpendently of one another.
 </p>
 <h3>
     Q: What is .NET Core?<br />
-    A:
 </h3>
+<p>
+    .NET Core is the MVC framework, developed in-house at Microsoft, that lumps up multiple open-source projects related to .NET and MVC into one. It is nearly identically to MVC 5.
+</p>
 <h3>
-    Q: Open the Person object in the Models Folder. The properties FirstName and LastName have square brackets above them. These statements have a name. These statements have a name, what is it? What do these brackets do?<br />
-    A:
+    Q: Open the Person object in the Models Folder. The properties FirstName and LastName have square brackets above them. These statements have a name, what is it? What do these brackets do?<br />
 </h3>
+<p>
+    Those are attributes. They are used to embed metadata information to your code - sort of like descriptive declarations.<br />
+    [Required] specifies that a data field value is required.
+    [StringLength] specifies the minimum and/or maximum length of characters that are allowed in a data field.
+</p>
 <h3>
     Q: Where do we store 'static' content in an MVC application?<br />
-    A:
 </h3>
+<p>
+    Typically, static files are best stored in the wwwroot folder. Typically they are further sorted within in 3 other folders: images, css, and scripts.
+</p>
 <h3>
     Q: Describe the purpose of the Program.cs class in this project.<br />
-    A:
 </h3>
+<p>
+    The Program class is used to create a host for the web applcation. Every ASP.NET Core web application requires a host to be executed.<br />
+    The WebHostBuilder() class is the helper class to create and configure a host for a web application.<br />
+    The UseKestrel() method is an extension method which specifies Kestrel (An open-source, cross-platform web server for ASP.NET Core) as an internal web server.<br />
+    The UseContentRoot() determines where the content files are located.<br />
+    The UseIISIntegration() method specifies the IIS as the external web server or the reverse proxy server.<br />
+    The UseStartUp() method specifies the StartUp class to be used by the web host. <br />
+    The Build() method returns an instance of an IWebHost using the configuration specified above.<br /><br />
+
+    Lastly, the Run() method starts the web application and blocks the calling thread until the host is shutdown.
+</p>
 <h3>
     Q: Describe the purpose of the Startup.cs class in this project.<br />
-    A:
 </h3>
+<p>
+    The StartUp.cs class is used to configure the request pipeline.<br />
+    ConfigureServices() is an optionally included method to configure the app's services, which makes them available within the app and in the Configure() method. <br />
+    Configure() is a mandatory method to create the app's processing pipeline, or how the app responds to HTTP requests.
+</p>
 <h3>
     Q: MVC Core applications can 'host' themselves: true or false?<br />
-    A:
 </h3>
+<p>
+    False. They are either hosted in IIS, as a Windows Service, or in an application.
+</p>
 <h3>
     Q: Name the language used to programmatically render HTML in MVC applications.<br />
-    A:
 </h3>
+<p>
+    Razor is generally used as a server-side scripting language.
+</p>
