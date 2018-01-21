@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@Html.ActionLink("Razor.cshtml", "Razor", "Home") &nbsp;
+@Html.ActionLink("CreatePerson.cshtml", "CreatePerson", "Home") <br /><br /><br />
+
+<table style="border: solid 1px black; border-collapse: collapse;">
+    @{
+        @for (int i = 0; i < 4; i++)
+        {
+            <tr style="margin: 0; border-spacing: 0;">
+                @for (int j = 1; j <= 10; j++)
+                {
+                    <td style="border: solid 1px black; padding: 3px; width: 90px; font-family:Calibri; font-size:medium">
+                        @((i * 10) + j)
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>
+
+@{
+    @for (int i = 99; i > 0; i--)
+    {
+        <p>
+            @i bottles of beer on the wall, @i bottles of beer.<br />
+            Take one down and pass it around, @(i - 1) bottles of beer on the wall.
+        </p>
+
+        @if ((i - 1) % 20 == 0)
+        {
+            <p>
+                WOOO!
+            </p>
+        }
+
+        @if ((i - 1) == 49)
+        {
+            <p>
+                awwww :(
+            </p>
+        }
+    }
+}

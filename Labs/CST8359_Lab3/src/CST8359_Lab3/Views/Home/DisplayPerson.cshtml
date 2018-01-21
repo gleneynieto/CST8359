@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using Microsoft.AspNetCore.Http;
+
+@{
+    <table>
+        <tr>
+            <td>First Name: </td>
+            <td>@Context.Session.GetString("firstName")</td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td>@Context.Session.GetString("lastName")</td>
+        </tr>
+        <tr>
+            <td>Age: </td>
+            <td>@Context.Session.GetString("age")</td>
+        </tr>
+        <tr>
+            <td>Email Address: </td>
+            <td>@Context.Session.GetString("emailAddress")</td>
+        </tr>
+        <tr>
+            <td>Date of Birth: </td>
+            <td>@Context.Session.GetString("dob")</td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td>@Context.Session.GetString("password")</td>
+        </tr>
+        <tr>
+            <td>Description of Person: </td>
+            <td>@Context.Session.GetString("description")</td>
+        </tr>
+    </table>
+}
