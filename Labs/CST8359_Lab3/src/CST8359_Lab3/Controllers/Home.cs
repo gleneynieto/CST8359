@@ -14,7 +14,7 @@ namespace Lab3.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View("Razor");
+            return View();
         }
 
         public IActionResult Razor()

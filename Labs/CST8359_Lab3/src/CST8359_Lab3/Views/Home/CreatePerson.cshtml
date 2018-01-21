@@ -2,9 +2,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@Html.ActionLink("Razor.cshtml", "Razor", "Home") &nbsp;
-@Html.ActionLink("CreatePerson.cshtml", "CreatePerson", "Home") <br /><br /><br />
-
+<h3>Create Person</h3>
 @{
     <form asp-controller="Home" asp-action="DisplayPerson" id="form" method="post">
         <table>
@@ -41,3 +39,6 @@
         <input type="reset" />
     </form>
 }
+
+<br /><br /><br />
+@Html.ActionLink("Go Home", "Index", "Home") &nbsp;
