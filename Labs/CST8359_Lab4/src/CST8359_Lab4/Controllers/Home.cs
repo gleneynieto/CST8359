@@ -38,5 +38,21 @@ namespace CST8359_Lab4.Controllers
 
             return View(movieToUpdate);
         }
+
+        public IActionResult ModifyMovie(Movie movie)
+        {
+            var id = Convert.ToInt32(Request.Form["MovieId"]);
+
+            var movieToUpdate = (from m in _movieContext.Movies where m.MovieId == id select m).FirstOrDefault();
+            movieToUpdate.Title = movie.Title;
+            movieToUpdate.SubTitle = movie.SubTitle;
+            movieToUpdate.Description = movie.Description;
+            movieToUpdate.Year = movie.Year;
+            movieToUpdate.Rating = movie.Rating;
+
+            _movieContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
