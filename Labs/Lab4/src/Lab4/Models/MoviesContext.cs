@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CST8359_Lab4.Models
+namespace Lab4.Models
 {
-    public class MovieContext : DbContext
+    public class MoviesContext : DbContext
     {
-        public MovieContext(DbContextOptions<MovieContext> options)
+        public MoviesContext(DbContextOptions<MoviesContext> options)
             : base(options)
         {
 

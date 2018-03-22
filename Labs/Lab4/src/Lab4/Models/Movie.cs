@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CST8359_Lab4.Models
+namespace Lab4.Models
 {
     public class Movie
     {

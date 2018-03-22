@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CST8359_Lab4.Models;
+using Lab4.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CST8359_Lab4.Controllers
+namespace Lab4.Controllers
 {
-    public class Home : Controller
+    public class HomeController : Controller
     {
         private MovieContext _movieContext;
 
-        public Home(MovieContext context)
+        public HomeController(MovieContext context)
         {
             _movieContext = context;
         }
@@ -22,6 +22,11 @@ namespace CST8359_Lab4.Controllers
         public IActionResult Index()
         {
             return View(_movieContext.Movies.ToList());
+        }
+
+        public IActionResult AddMovie()
+        {
+            return View();
         }
 
         public IActionResult CreateMovie(Movie movie)
@@ -51,6 +56,15 @@ namespace CST8359_Lab4.Controllers
             movieToUpdate.Rating = movie.Rating;
 
             _movieContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteMovie(int id)
+        {
+            var movieToDelete = (from m in _movieContext.Movies where m.MovieId == id select m).FirstOrDefault();
+
+            _movieContext.Remove(movieToDelete);
 
             return RedirectToAction("Index");
         }

@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Lab4.Models;
 
-namespace CST8359_Lab4
+namespace Lab4
 {
     public class Startup
     {
@@ -16,13 +18,13 @@ namespace CST8359_Lab4
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=localhost;Database=Lab4;Trusted_Connection=True;MultipleActiveResultSets=true";
-            // if that fails try: var connection = 
-            // @"Server=localhost\SQLEXPRESS;Database=Lab4;Trusted_Connection=True;MultipleActiveResultSets=true";
+            //var connection = @"Server=localhost;Database=Lab4;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var connection = @"Server=localhost\SQLEXPRESS;Database=Lab4;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<MovieContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

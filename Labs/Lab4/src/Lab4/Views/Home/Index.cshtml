@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Lab4.Models.Movie>
+@{
+
+}
+
+<h3>Movies</h3>
+@if (Model == null || Model.Count() == 0)
+{
+    <h4>Currently, there are no models in the database.</h4>    
+}
+else
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a asp-controller="Home" asp-action="ModifyMovie" asp-route-id="@item.MovieId">Edit</a>&nbsp;&nbsp;
+                <a asp-controller="Home" asp-action="DeleteMovie" asp-route-id="@item.MovieId">Delete</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                @item.Title;
+            </li>
+        }
+    </ul>
+}
+
+<br />
+<a asp-controller="Home" asp-action="AddMovie">Add Movie</a>

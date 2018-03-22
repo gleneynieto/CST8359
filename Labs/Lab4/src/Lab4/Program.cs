@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CST8359_Lab4
+namespace Lab4
 {
     public class Program
     {
