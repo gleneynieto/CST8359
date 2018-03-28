@@ -31,8 +31,11 @@ namespace Lab4.Controllers
 
         public IActionResult CreateMovie(Movie movie)
         {
-            _movieContext.Movies.Add(movie);
-            _movieContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _movieContext.Movies.Add(movie);
+                _movieContext.SaveChanges();
+            }         
 
             return RedirectToAction("Index");
         }
@@ -65,6 +68,7 @@ namespace Lab4.Controllers
             var movieToDelete = (from m in _movieContext.Movies where m.MovieId == id select m).FirstOrDefault();
 
             _movieContext.Remove(movieToDelete);
+            _movieContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
