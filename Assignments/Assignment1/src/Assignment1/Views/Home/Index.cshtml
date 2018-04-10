@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Assignment1.Models.BlogPost>
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = "_Layout";
+}
+
+<div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
+    <h3>Welcome to the Blog.</h3>
+</div>
+
+<br />
+<br />
+
+<div class="col-12">
+    @if (Model == null || Model.Count() == 0)
+        {
+        <table class="table table-striped table-hover table-responsive">
+            <tbody>
+                <tr>
+                    <td colspan="6">There are currently no blogs posted.<br /><br /></td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div style="margin-bottom: 4rem">
+                <h2 style="margin-bottom: .25rem; font-size: 2.5rem"><a asp-controller="Home" asp-action="DisplayFullBlogPost" asp-route-id="@item.BlogPostId">@item.Title</a></h2>
+                <p style="margin-bottom: 1.25rem; color: #999">
+                    @item.Posted.ToString(@"MMMM dd, yyyy") by <a href="#">User</a>
+                </p>
+                <p>
+                    @if (item.Content.Length < 100)
+                    {
+                        @item.Content;
+                    }
+                    else
+                    {
+                        @item.Content.Substring(0, 99);
+                    }
+                </p>
+                @if (Context.Session.GetInt32("_userId") != null && Context.Session.GetInt32("_roleId") == 2)
+                    {
+                    <a asp-controller="Home" class="btn btn-sm btn-primary" asp-action="EditBlogPost" asp-route-id="@item.BlogPostId">Edit Post</a>
+                }
+                <hr />
+            </div>
+        }
+    }
+</div>

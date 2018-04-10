@@ -1,0 +1,47 @@
+﻿@model Assignment1.Models.BlogPost
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = "_Layout";
+}
+
+<div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
+    <h2>@Model.Title</h2>
+</div>
+
+<div style="margin-bottom: 4rem; width: 80%">
+    <h2 style="margin-bottom: .25rem; font-size: 2.5rem"><a asp-controller="Home" asp-action="DisplayFullBlogPost" asp-route-id="@Model.BlogPostId">@Model.Title</a></h2>
+    <p style="margin-bottom: 1.25rem; color: #999">
+        @Model.Posted.ToString(@"MMMM dd, yyyy") by
+    </p>
+    <p>
+        @Model.Content;
+    </p>
+    <hr />
+
+    @if (Context.Session.GetInt32("_userId") != null)
+    {
+        <h2 style="margin-bottom: .25rem; font-size: 2.5rem">Comments</h2>
+        <form method="post" asp-controller="Home" asp-action="PostComment">
+            <input type="hidden" value="@Model.BlogPostId" name="BlogPostId" />
+            <input type="hidden" value="@Model.UserId" name="UserId" />
+            <div class="form-group">
+                <label for="Content">Enter Comments</label>
+                <textarea class="form-control" id="Content" rows="2" asp-for="Content"></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <hr />
+   
+        @foreach (var item in Model.Content)
+        {
+            <p style="margin-bottom: 1.25rem">
+                Content
+            </p>
+            <div class="text-muted">by User</div>
+            <br />
+            <hr />
+            <br />
+        }
+    }
+</div>
