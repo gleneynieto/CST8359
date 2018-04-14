@@ -23,7 +23,24 @@ namespace Assignment1.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(_assignment1DataContext.BlogPosts.ToList());
+            var indexViewList = new List<IndexViewModel>(); 
+
+            var blogPost = _assignment1DataContext.BlogPosts.ToList();
+
+            foreach(var b in blogPost)
+            {
+                var indexViewModel = new IndexViewModel();
+
+                indexViewModel.BlogPost = b;
+
+                indexViewModel.User = (from u in _assignment1DataContext.Users where u.UserId == b.UserId select u).FirstOrDefault();
+
+                indexViewList.Add(indexViewModel);
+            }
+
+            indexViewList.Reverse();
+
+            return View(indexViewList);
         }
 
         public IActionResult Register()
@@ -57,6 +74,7 @@ namespace Assignment1.Controllers
                 //Save User Id in session state
                 HttpContext.Session.SetInt32("_userId", userToValidate.UserId);
                 HttpContext.Session.SetInt32("_roleId", userToValidate.RoleId);
+                HttpContext.Session.SetString("_firstName", userToValidate.FirstName);
 
                 return RedirectToAction("Index");
             }
@@ -70,9 +88,18 @@ namespace Assignment1.Controllers
 
         public IActionResult DisplayFullBlogPost(int id)
         {
-            var blogPostToShow = (from b in _assignment1DataContext.BlogPosts where b.BlogPostId == id select b).FirstOrDefault();
+            var displayFullBlogPostViewModel = new DisplayFullBlogPostViewModel();
 
-            return View(blogPostToShow);
+            var blogPostToShow = (from b in _assignment1DataContext.BlogPosts where b.BlogPostId == id select b).FirstOrDefault();
+            displayFullBlogPostViewModel.BlogPost = blogPostToShow;
+
+            var user = (from u in _assignment1DataContext.Users where blogPostToShow.UserId == u.UserId select u).FirstOrDefault();
+            displayFullBlogPostViewModel.User = user;
+
+            var comments = (from c in _assignment1DataContext.Comments where c.BlogPostId == id select c).ToList();
+            displayFullBlogPostViewModel.Comments = comments;
+
+            return View(displayFullBlogPostViewModel);
         }
 
         public IActionResult PostComment(Comment comment)
@@ -80,7 +107,7 @@ namespace Assignment1.Controllers
             _assignment1DataContext.Comments.Add(comment);
             _assignment1DataContext.SaveChanges();
 
-            return View();
+            return RedirectToAction("DisplayFullBlogPost", new { id = comment.BlogPostId });
         }
 
         public IActionResult AddBlogPost()
@@ -91,6 +118,25 @@ namespace Assignment1.Controllers
         public IActionResult CreateBlogPost(BlogPost blogPost)
         {
             _assignment1DataContext.BlogPosts.Add(blogPost);
+            _assignment1DataContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult EditBlogPost(int id)
+        {
+            var blogPostToUpdate = (from b in _assignment1DataContext.BlogPosts where b.BlogPostId == id select b).FirstOrDefault();
+
+            return View(blogPostToUpdate);
+        }
+
+        public IActionResult ModifyBlogPost(BlogPost blogPost)
+        {
+            var blogPostToUpdate = (from b in _assignment1DataContext.BlogPosts where b.BlogPostId == blogPost.BlogPostId select b).FirstOrDefault();
+            blogPostToUpdate.Title = blogPost.Title;
+            blogPostToUpdate.Posted = blogPost.Posted;
+            blogPostToUpdate.Content = blogPost.Content;
+
             _assignment1DataContext.SaveChanges();
 
             return RedirectToAction("Index");

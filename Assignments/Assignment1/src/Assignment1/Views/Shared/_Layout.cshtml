@@ -1,5 +1,4 @@
-﻿@model Assignment1.Models.Role
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 <!DOCTYPE html>
 
 <html lang="en">
@@ -45,7 +44,7 @@
             if (User.Identity.IsAuthenticated)
             {
                 <div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
-                    <h2>Welcome, @Model.Name !</h2>
+                    <h2>Welcome, @Context.Session.GetString("_firstName")!</h2>
                 </div>
             }
         }

@@ -1,0 +1,29 @@
+﻿@model Assignment1.Models.BlogPost
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = "_Layout";
+}
+
+<div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
+    <h2>Edit Blog Post</h2>
+</div>
+
+<div class="col-sm-12">
+    <form method="post" asp-controller="Home" asp-action="ModifyBlogPost">
+        <input type="hidden" value="@Model.BlogPostId" name="BlogPostId" />
+        <input type="hidden" value="@Model.UserId" name="UserId" />
+        <input type="hidden" value="@Model.Posted" name="Posted" />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-control" id="content" rows="10" name="Content">@Model.Content</textarea>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Edit Post</button>
+    </form>
+</div>

@@ -1,44 +1,43 @@
-﻿@model Assignment1.Models.BlogPost
+﻿@model Assignment1.Models.DisplayFullBlogPostViewModel
 @using Microsoft.AspNetCore.Http
 @{
     Layout = "_Layout";
 }
 
-<div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
-    <h2>@Model.Title</h2>
-</div>
+<br />
+<br />
 
-<div style="margin-bottom: 4rem; width: 80%">
-    <h2 style="margin-bottom: .25rem; font-size: 2.5rem"><a asp-controller="Home" asp-action="DisplayFullBlogPost" asp-route-id="@Model.BlogPostId">@Model.Title</a></h2>
+<div class="mt-lg-4" style="margin-bottom: 4rem; width: 80%">
+    <h2 style="margin-bottom: .25rem; font-size: 2.5rem"><a asp-controller="Home" asp-action="DisplayFullBlogPost" asp-route-id="@Model.BlogPost.BlogPostId">@Model.BlogPost.Title</a></h2>
     <p style="margin-bottom: 1.25rem; color: #999">
-        @Model.Posted.ToString(@"MMMM dd, yyyy") by
+        @Model.BlogPost.Posted.ToString(@"MMMM dd, yyyy") by <a href="#">@Model.User.FirstName</a>
     </p>
     <p>
-        @Model.Content;
+        @Model.BlogPost.Content
     </p>
     <hr />
 
     @if (Context.Session.GetInt32("_userId") != null)
     {
-        <h2 style="margin-bottom: .25rem; font-size: 2.5rem">Comments</h2>
+        <div class="text-sm-left" style="margin-bottom: .25rem; font-size: 2.5rem">Comments</div>
         <form method="post" asp-controller="Home" asp-action="PostComment">
-            <input type="hidden" value="@Model.BlogPostId" name="BlogPostId" />
-            <input type="hidden" value="@Model.UserId" name="UserId" />
+            <input type="hidden" value="@Model.BlogPost.BlogPostId" name="BlogPostId"/>
+            <input type="hidden" value="@Model.User.UserId" name="UserId" />
             <div class="form-group">
-                <label for="Content">Enter Comments</label>
-                <textarea class="form-control" id="Content" rows="2" asp-for="Content"></textarea>
+                <label for="comment">Enter Comments:</label>
+                <textarea class="form-control" name="Content" rows="1"></textarea>
+                <br />
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 
         <hr />
    
-        @foreach (var item in Model.Content)
+        @foreach (var item in Model.Comments)
         {
             <p style="margin-bottom: 1.25rem">
-                Content
+                @item.Content
             </p>
-            <div class="text-muted">by User</div>
             <br />
             <hr />
             <br />
