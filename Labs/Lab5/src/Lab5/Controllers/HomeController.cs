@@ -37,7 +37,7 @@ namespace Lab5.Controllers
 
             var blobClient = storageAccount.CreateCloudBlobClient();
 
-            var container = blobClient.GetContainerReference("martinsphotostorage");
+            var container = blobClient.GetContainerReference("petersphotostorage");
             await container.CreateIfNotExistsAsync();
 
             var permissions = new BlobContainerPermissions();

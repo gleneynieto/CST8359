@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Assignment2.Models.BadWord>
+@{
+    Layout = "_Layout";
+}
+
+<div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
+    <h2>View Bad Words</h2>
+</div>
+
+<div class="col-sm-12">
+    <form method="post" asp-controller="Home" asp-action="AddBadWord">
+        <div class="form-group">
+            <label for="addbadword">Add Bad Word:</label>
+            <input type="text" class="form-control" id="addbadword" name="BadWord.Word" placeholder="Bad Word" required>
+            <br />
+            <button type="submit" class="btn btn-primary">Add Bad Word</button>
+        </div>
+    </form>
+
+    <hr />
+    <br />
+
+    <h3>List of Bad Words: </h3>
+    @foreach (var item in Model)
+    {
+        <div class="mb-1 text-muted">
+            @item.Word
+        </div>
+    }
+</div>

@@ -1,4 +1,4 @@
-﻿@model Assignment2.Models.BlogPost
+﻿@model Assignment2.Models.EditBlogPostViewModel
 @using Microsoft.AspNetCore.Http
 @{
     Layout = "_Layout";
@@ -10,20 +10,83 @@
 
 <div class="col-sm-12">
     <form method="post" asp-controller="Home" asp-action="ModifyBlogPost">
-        <input type="hidden" value="@Model.BlogPostId" name="BlogPostId" />
-        <input type="hidden" value="@Model.UserId" name="UserId" />
-        <input type="hidden" value="@Model.Posted" name="Posted" />
+        <input type="hidden" value="@Model.BlogPost.BlogPostId" name="BlogPost.BlogPostId" />
+        <input type="hidden" value="@Model.BlogPost.UserId" name="BlogPost.UserId" />
+        <input type="hidden" value="@Model.BlogPost.Posted" name="BlogPost.Posted" />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" required>
+                <input type="text" class="form-control" id="title" name="BlogPost.Title" value="@Model.BlogPost.Title" required>
             </div>
         </div>
         <div class="form-group">
+            <label for="shortdescription">Short Description:</label>
+            <input type="text" class="form-control" id="shortdesciption" name="BlogPost.ShortDescription" value="@Model.BlogPost.ShortDescription" asp-for="BlogPost.ShortDescription" required>
+        </div>
+        <div class="form-group">
             <label for="content">Content:</label>
-            <textarea class="form-control" id="content" rows="10" name="Content">@Model.Content</textarea>
+            <textarea class="form-control" id="content" rows="10" name="BlogPost.Content">@Model.BlogPost.Content</textarea>
+        </div>
+        <p style="">Readable by Users? <br /></p>
+        <div class="form-row">
+            <div class="form-check form-check-inline">
+                @if (Model.BlogPost.IsAvailable)
+                {
+                    <input class="form-check-input" type="radio" name="IsAvailable" id="trueRadio" value="true" checked>
+                }
+                else
+                {
+                    <input class="form-check-input" type="radio" name="IsAvailable" id="trueRadio" value="true">
+                }
+                <label class="form-check-label" for="trueRadio">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @if (!Model.BlogPost.IsAvailable)
+                {
+                    <input class="form-check-input" type="radio" name="IsAvailable" id="falseRadio" value="false" checked>
+                }
+                else
+                {
+                    <input class="form-check-input" type="radio" name="IsAvailable" id="falseRadio" value="false">
+                }
+                <label class="form-check-label" for="falseRadio">No</label>
+            </div>
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Edit Post</button>
     </form>
+
+    <hr />
+
+    <h3>Add/Delete Photos</h3>
+    <br />
+    @foreach (var photo in Model.Photos)
+    {
+        <div>
+            <div class="card flex-md-row mb-4 box-shadow h-md-250 w-100" style="width: 18rem;">
+                <div class="card-body d-flex align-items-start">
+                    <br />
+                    <h3 class="mr-3">
+                        @photo.FileName
+                    </h3>
+                    <br />
+                    <br />
+                    <br />
+                    <a asp-controller="Home" class="btn btn-sm btn-danger" asp-action="DeletePhoto" asp-route-id="@photo.PhotoId">Delete Photo</a>
+                </div>
+                <a target="_blank" href="#"><img class="card-img-right flex-auto d-none d-md-block" style="max-width: 475px; width: 100%; height: 300px; display:block;" src="@photo.Url"></a>
+            </div>
+        </div>
+    }
+    <br />
+    <br />
+    <h4>Upload a new photo</h4>
+    <br />
+    <form asp-controller="Home" asp-action="UploadFile" enctype="multipart/form-data">
+        <input type="hidden" name="BlogPostId" value="@Model.BlogPost.BlogPostId" />
+        <input type="file" name="files" multiple /> <button name="upload">Upload Now</button>
+    </form>
+    <br />
+    <br />
+    <br />
 </div>

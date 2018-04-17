@@ -26,6 +26,12 @@ namespace Assignment2.Models
             set;
         }
 
+        public string ShortDescription
+        {
+            get;
+            set;
+        }
+
         public string Content
         {
             get;
@@ -33,6 +39,12 @@ namespace Assignment2.Models
         }
 
         public DateTime Posted
+        {
+            get;
+            set;
+        }
+
+        public bool IsAvailable
         {
             get;
             set;

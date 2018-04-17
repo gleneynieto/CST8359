@@ -6,7 +6,7 @@
 }
 
 <div style="padding-bottom:9px; margin: 40px 0 20px; border-bottom: 1px solid #eee; box-sizing: border-box">
-    <h3>Welcome to the Blog.</h3>
+    <h3>Welcome, @Context.Session.GetString("_firstName") @Context.Session.GetString("_lastName")</h3>
 </div>
 
 <br />

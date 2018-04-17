@@ -14,9 +14,13 @@ namespace Assignment2.Models
 
         }
 
+        public DbSet<BadWord> BadWords { get; set; }
+
         public DbSet<BlogPost> BlogPosts { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Photo> Photos { get; set; }
 
         public DbSet<Role> Roles { get; set; }
 

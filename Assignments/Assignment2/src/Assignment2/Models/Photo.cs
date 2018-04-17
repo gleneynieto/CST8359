@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Assignment2.Models
 {
-    public class Comment
+    public class Photo
     {
-        public int CommentId
+        public int PhotoId
         {
             get;
             set;
@@ -20,19 +19,13 @@ namespace Assignment2.Models
             set;
         }
 
-        public int UserId
+        public string FileName
         {
             get;
             set;
         }
 
-        public string Content
-        {
-            get;
-            set;
-        }
-
-        public int Rating
+        public string Url
         {
             get;
             set;

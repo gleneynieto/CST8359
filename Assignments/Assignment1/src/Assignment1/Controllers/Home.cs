@@ -75,6 +75,7 @@ namespace Assignment1.Controllers
                 HttpContext.Session.SetInt32("_userId", userToValidate.UserId);
                 HttpContext.Session.SetInt32("_roleId", userToValidate.RoleId);
                 HttpContext.Session.SetString("_firstName", userToValidate.FirstName);
+                HttpContext.Session.SetString("_lastName", userToValidate.LastName);
 
                 return RedirectToAction("Index");
             }
